@@ -15,13 +15,24 @@ rings = 16;
 // sphere geometry - we will cover
 // the sphereMaterial next!
 var sphereMaterial =
-    new THREE.MeshBasicMaterial({color:0x00ff00});
+    new THREE.MeshLambertMaterial({color:0x00ff00});
 var sphere = new THREE.Mesh(
   new THREE.SphereGeometry( radius, segments, rings),
   sphereMaterial);
 
 // add the sphere to the scene
 scene.add(sphere);
+
+var pointLight =
+    new THREE.PointLight(0xFFFFFF);
+
+// set its position
+pointLight.position.x = 10;
+pointLight.position.y = 50;
+pointLight.position.z = 130;
+
+// add to the scene
+scene.add(pointLight);
 
 var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
 
