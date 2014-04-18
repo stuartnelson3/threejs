@@ -41,11 +41,25 @@ var cube = new THREE.Mesh(geometry, material);
 
 camera.position.z = 5;
 
+function calculateLightOrbit(position, r, theta) {
+  // theta is the angle passed
+  position.x = Math.cos(theta) * r
+  position.z = Math.sin(theta) * r
+}
+
+angle = 0
 var render = function () {
   requestAnimationFrame(render);
 
   sphere.rotation.x += 0.1;
   sphere.rotation.y += 0.1;
+
+  calculateLightOrbit(
+    pointLight.position,
+    pointLight.position.y,
+    angle
+  );
+  angle += 0.1
 
   cube.rotation.x += 0.1;
   cube.rotation.y += 0.1;
