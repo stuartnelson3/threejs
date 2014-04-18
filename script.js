@@ -9,12 +9,12 @@ var geometry = new THREE.CubeGeometry(1,1,1);
 
 // set up the sphere vars
 var radius = 1,
-segments = 16,
-rings = 16;
+segments = 90;
+// # of polygons used to render circle.
+// more polygons == smoother sphere.
+var rings = segments;
 
-// create a new mesh with
-// sphere geometry - we will cover
-// the sphereMaterial next!
+// create sphere material and geometry
 var sphereMaterial =
     new THREE.MeshLambertMaterial({color:0x00ff00});
 var sphere = new THREE.Mesh(
