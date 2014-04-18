@@ -6,6 +6,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 var geometry = new THREE.CubeGeometry(1,1,1);
+
 // set up the sphere vars
 var radius = 1,
 segments = 16,
@@ -48,21 +49,42 @@ function calculateLightOrbit(position, r, theta) {
 }
 
 angle = 0
+dx = 0.1
+dy = 0.2
+dz = 0.3
+
+var xBoundary = window.innerWidth/296.30769
+var yBoundary = window.innerHeight/318.46153
+var zBoundary = 3
+
 var render = function () {
   requestAnimationFrame(render);
 
-  sphere.rotation.x += 0.1;
-  sphere.rotation.y += 0.1;
+  sphere.position.z += dz
+  if (sphere.position.z >= 2 || sphere.position.z <= -10) {
+    dz *= -1
+  }
+  sphere.position.x += dx
+  if (sphere.position.x >= xBoundary || sphere.position.x <= -xBoundary) {
+    dx *= -1
+  }
+  sphere.position.y += dy
+  if (sphere.position.y >= yBoundary || sphere.position.y <= -yBoundary) {
+    dy *= -1
+  }
+
+  // sphere.rotation.x += 0.1;
+  // sphere.rotation.y += 0.1;
 
   calculateLightOrbit(
     pointLight.position,
     pointLight.position.y,
     angle
   );
-  angle += 0.1
+  angle += 0.05
 
-  cube.rotation.x += 0.1;
-  cube.rotation.y += 0.1;
+  // cube.rotation.x += 0.1;
+  // cube.rotation.y += 0.1;
 
   renderer.render(scene, camera);
 };
